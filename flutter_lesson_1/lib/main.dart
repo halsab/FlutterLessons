@@ -4,8 +4,15 @@ void main() {
   runApp(const MainApp());
 }
 
-class MainApp extends StatelessWidget {
+class MainApp extends StatefulWidget {
   const MainApp({super.key});
+
+  @override
+  State<MainApp> createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> {
+  var title = 'My first app';
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +20,7 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('My first app'),
+          title: Text(title),
         ),
         body: Center(
           child: Container(
@@ -25,7 +32,9 @@ class MainApp extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    print('Clicked');
+                    setState(() {
+                      title = 'New title';
+                    });
                   },
                   child: const Text('Click me!'),
                 ),
